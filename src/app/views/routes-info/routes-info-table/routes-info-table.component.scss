@@ -1,4 +1,10 @@
 .table-wrapper {
   position: relative;
   flex: 1;
+  overflow: auto;
+
+}
+
+.mat-table {
+  height: 0;
 }

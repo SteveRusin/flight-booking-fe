@@ -1,6 +1,9 @@
 import { Component } from '@angular/core';
+import { PageEvent } from '@angular/material/paginator';
+import { EMPTY, catchError, finalize, merge } from 'rxjs';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
-import { ApiRoutesService } from '@api/api-routes';
+import { RoutesInfoService } from './routes-info.service';
 
 @Component({
   selector: 'app-routes-info',
@@ -9,7 +12,33 @@ import { ApiRoutesService } from '@api/api-routes';
   host: {
     class: 'with-fluid-height',
   },
+  providers: [RoutesInfoService],
 })
 export class RoutesInfoComponent {
-  constructor(private _apiRoutesService: ApiRoutesService) {}
+  routes$ = this.getPage(0);
+
+  isLoading = true;
+
+  constructor(
+    private _routesInfoService: RoutesInfoService,
+    private _matSnackBar: MatSnackBar,
+  ) {}
+
+  onPageChange(event: PageEvent) {
+    this.routes$ = this.getPage(event.pageIndex);
+  }
+
+  private getPage(pageIndex: number) {
+    this.isLoading = true;
+
+    return this._routesInfoService.getPage(pageIndex).pipe(
+      finalize(() => (this.isLoading = false)),
+      catchError(() => {
+        // todo i18n
+        this._matSnackBar.open('Something went wrong');
+
+        return EMPTY;
+      }),
+    );
+  }
 }

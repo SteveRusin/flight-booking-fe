@@ -13,13 +13,15 @@ export class ApiRoutesService {
   constructor(private _httpClient: HttpClient) {}
 
   getRoutes(query: RoutesQuery): Observable<RouteDto> {
-    const params = new HttpParams();
+    const params = new HttpParams()
+      .set('limit', query.limit)
+      .set('offset', query.offset);
 
-    params.set('limit', query.limit);
-    params.set('offset', query.offset);
-
-    return this._httpClient.get<RouteDto>(`${environment}/routes`, {
-      params,
-    });
+    return this._httpClient.get<RouteDto>(
+      `${environment.routesApiUrl}/routes`,
+      {
+        params,
+      },
+    );
   }
 }
