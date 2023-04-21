@@ -1,0 +1,11 @@
+@use '@angular/material' as mat;
+
+@use './theme' as *;
+@use './used-components' as app;
+@use './variables' as *;
+
+body.app-dark {
+  color: mat.get-color-from-palette($theme-primary, 50);
+  background-color: mat.get-color-from-palette($theme-primary, 900);
+  @include app.app-material-components-colors($theme-dark);
+}

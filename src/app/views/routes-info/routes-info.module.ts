@@ -6,5 +6,6 @@ import { RoutesInfoComponent } from './routes-info.component';
 @NgModule({
   imports: [CommonModule],
   declarations: [RoutesInfoComponent],
+  exports: [RoutesInfoComponent],
 })
 export class RoutesInfoModule {}

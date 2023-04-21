@@ -1,0 +1,115 @@
+@use '@angular/material' as mat;
+
+@use 'sass:map';
+@use 'sass:color';
+
+@use '../app-color-schema' as *;
+
+// angular uses next values
+// default: 500, lighter: 100, darker: 700, text: $default
+// https://tomastrajan.medium.com/the-complete-guide-to-angular-material-themes-4d165a9d24d1
+// colors generated based on app-color-schema file
+// http://mcg.mbitson.com/
+// https://github.com/mbitson/mcg
+$colors-primary: (
+  10: $primary-white,
+  50: #e6ebee,
+  100: #c2ccd4,
+  200: #99aab7,
+  300: #70889a,
+  400: #516f84,
+  500: #32556e,
+  600: #2d4e66,
+  700: #26445b,
+  800: #1f3b51,
+  900: #132a3f,
+  A100: #afd5f0,
+  A200: #5aa8df,
+  A400: #3273a1,
+  A700: #356384,
+  contrast: (
+    10: map.get($typography-grey, 100),
+    50: map.get($typography-grey, 100),
+    100: map.get($typography-grey, 100),
+    200: map.get($typography-grey, 100),
+    300: $primary-white,
+    400: $primary-white,
+    500: $primary-white,
+    600: $primary-white,
+    700: $primary-white,
+    800: $primary-white,
+    900: $primary-white,
+    A100: map.get($typography-grey, 100),
+    A200: map.get($typography-grey, 100),
+    A400: $primary-white,
+    A700: $primary-white,
+  ),
+);
+$colors-accent: (
+  50: #b4ebff,
+  100: #68d6ff,
+  200: #30c7ff,
+  300: #00a9e7,
+  400: #0092c9,
+  500: #007caa,
+  600: #00668b,
+  700: #004f6d,
+  800: #00394e,
+  900: #002330,
+  A100: #aae8ff,
+  A200: #4cf,
+  A400: #00a1dd,
+  A700: #008fc3,
+  contrast: (
+    50: map.get($typography-grey, 100),
+    100: map.get($typography-grey, 100),
+    200: map.get($typography-grey, 100),
+    300: map.get($typography-grey, 100),
+    400: map.get($typography-grey, 100),
+    500: $primary-white,
+    600: $primary-white,
+    700: $primary-white,
+    800: $primary-white,
+    900: $primary-white,
+    A100: map.get($typography-grey, 100),
+    A200: map.get($typography-grey, 100),
+    A400: map.get($typography-grey, 100),
+    A700: map.get($typography-grey, 100),
+  ),
+);
+$red-palette: (
+  50: $primary-white,
+  100: #fdeded,
+  200: #f8baba,
+  300: #f17979,
+  400: #ee5e5e,
+  500: #eb4242,
+  600: #e82626,
+  700: #d91717,
+  800: #bd1414,
+  900: #a11111,
+  A100: $primary-white,
+  A200: #ffc7c7,
+  A400: #fc6464,
+  A700: #f25454,
+  contrast: (
+    50: map.get($typography-grey, 100),
+    100: map.get($typography-grey, 100),
+    200: map.get($typography-grey, 100),
+    300: map.get($typography-grey, 100),
+    400: map.get($typography-grey, 100),
+    500: $primary-white,
+    600: $primary-white,
+    700: $primary-white,
+    800: $primary-white,
+    900: $primary-white,
+    A100: map.get($typography-grey, 100),
+    A200: $primary-white,
+    A400: $primary-white,
+    A700: $primary-white,
+  ),
+);
+
+$theme-primary: mat.define-palette($colors-primary);
+$theme-accent: mat.define-palette($colors-accent);
+$theme-warn: mat.define-palette($red-palette);

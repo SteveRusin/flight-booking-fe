@@ -40,6 +40,13 @@ module.exports = {
           'sibling',
           'index',
         ],
+        pathGroups: [
+          {
+            pattern: 'src/**',
+            group: 'internal',
+            position: 'after',
+          }
+        ],
         pathGroupsExcludedImportTypes: ['builtin'],
       },
     ],

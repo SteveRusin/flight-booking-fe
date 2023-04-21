@@ -15,8 +15,8 @@ export const APP_ROUTES: Route[] = [
       {
         path: 'routes-info',
         loadChildren: () =>
-          import('./views/routes-info/routes-info.module').then(
-            (module) => module.RoutesInfoModule,
+          import('./views/routes-info-view/routes-info-view.module').then(
+            (module) => module.RoutesInfoViewModule,
           ),
       },
     ],

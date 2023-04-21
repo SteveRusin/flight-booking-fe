@@ -1,0 +1,17 @@
+@use '@angular/material' as mat;
+
+@use './variables' as *;
+
+@include mat.core;
+
+$theme-dark: mat.define-dark-theme(
+  (
+    color: (
+      primary: $theme-primary,
+      accent: $theme-accent,
+      warn: $theme-warn,
+      density: -20,
+      is-dark: true,
+    ),
+  )
+);

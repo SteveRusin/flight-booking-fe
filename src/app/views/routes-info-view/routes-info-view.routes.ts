@@ -1,10 +1,10 @@
 import { Route } from '@angular/router';
 
-import { RoutesInfoComponent } from './routes-info.component';
+import { RoutesInfoViewComponent } from './routes-info-view.component';
 
 export const ROUTES_INFO_ROUTES: Route[] = [
   {
     path: '',
-    component: RoutesInfoComponent,
+    component: RoutesInfoViewComponent,
   },
 ];
