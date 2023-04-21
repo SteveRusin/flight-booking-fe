@@ -1,0 +1,20 @@
+{
+  "error": {
+    "common": "Something went wrong"
+  },
+  "routes": {
+    "sourceAirport": "Source Airport",
+    "destinationAirport": "Destination Airport",
+    "airline": "Airline",
+    "stops": "Stops",
+    "equipment": "Equipment",
+    "codeShare": "Code Share"
+  },
+  "paginator": {
+    "itemsPerPageLabel": "Items per page:",
+    "nextPageLabel": "Next page",
+    "previousPageLabel": "Previous page",
+    "firstPageLabel": "First page",
+    "lastPageLabel": "Last page"
+  }
+}

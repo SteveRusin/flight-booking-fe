@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable, of, tap } from 'rxjs';
+import { Observable, of, share, tap } from 'rxjs';
 
 import { ApiRoutesService, RouteDto } from '@api/api-routes';
 

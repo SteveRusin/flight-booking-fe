@@ -6,46 +6,48 @@
     </ng-container>
 
     <ng-container matColumnDef="airline">
-      <mat-header-cell mat-header-cell *matHeaderCellDef
-        >Airline</mat-header-cell
+      <mat-header-cell mat-header-cell *matHeaderCellDef>
+        {{ 'routes.airline' | translate }}</mat-header-cell
       >
       <mat-cell mat-cell *matCellDef="let row">{{ row.airline }}</mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="sourceAirport">
-      <mat-header-cell mat-header-cell *matHeaderCellDef
-        >Source Airport</mat-header-cell
-      >
+      <mat-header-cell mat-header-cell *matHeaderCellDef>{{
+        'routes.sourceAirport' | translate
+      }}</mat-header-cell>
       <mat-cell mat-cell *matCellDef="let row">{{
         row.sourceAirport
       }}</mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="destinationAirport">
-      <mat-header-cell mat-header-cell *matHeaderCellDef
-        >Destination Airport</mat-header-cell
-      >
+      <mat-header-cell mat-header-cell *matHeaderCellDef>{{
+        'routes.destinationAirport' | translate
+      }}</mat-header-cell>
       <mat-cell mat-cell *matCellDef="let row">{{
         row.destinationAirport
       }}</mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="codeShare">
-      <mat-header-cell mat-header-cell *matHeaderCellDef
-        >Code Share</mat-header-cell
-      >
+      <mat-header-cell mat-header-cell *matHeaderCellDef>{{
+        'routes.codeShare' | translate
+      }}</mat-header-cell>
       <mat-cell mat-cell *matCellDef="let row">{{ row.codeShare }}</mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="stops">
-      <mat-header-cell mat-header-cell *matHeaderCellDef>Stops</mat-header-cell>
+      <mat-header-cell mat-header-cell *matHeaderCellDef>{{
+        'routes.stops' | translate
+      }}</mat-header-cell>
       <mat-cell mat-cell *matCellDef="let row">{{ row.stops }}</mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="equipment">
-      <mat-header-cell mat-header-cell *matHeaderCellDef
-        >Equipment</mat-header-cell
-      >
+      <mat-header-cell mat-header-cell *matHeaderCellDef>{{
+        'routes.equipment' | translate
+      }}</mat-header-cell>
       <mat-cell mat-cell *matCellDef="let row">{{ row.equipment }}</mat-cell>
     </ng-container>
 
@@ -56,7 +58,6 @@
   <app-spinner class="loading-overlay-center" *ngIf="isLoading"></app-spinner>
 </div>
 
-<!-- todo internationalize -->
 <mat-paginator
   (page)="onPageChange($event)"
   [length]="totalCount"

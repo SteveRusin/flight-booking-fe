@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { PageEvent } from '@angular/material/paginator';
-import { EMPTY, catchError, finalize, merge } from 'rxjs';
+import { EMPTY, catchError, finalize } from 'rxjs';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { TranslateService } from '@ngx-translate/core';
 
 import { RoutesInfoService } from './routes-info.service';
 
@@ -22,6 +23,7 @@ export class RoutesInfoComponent {
   constructor(
     private _routesInfoService: RoutesInfoService,
     private _matSnackBar: MatSnackBar,
+    private _translateService: TranslateService,
   ) {}
 
   onPageChange(event: PageEvent) {
@@ -34,8 +36,7 @@ export class RoutesInfoComponent {
     return this._routesInfoService.getPage(pageIndex).pipe(
       finalize(() => (this.isLoading = false)),
       catchError(() => {
-        // todo i18n
-        this._matSnackBar.open('Something went wrong');
+        this._matSnackBar.open(this._translateService.instant('error.common'));
 
         return EMPTY;
       }),
