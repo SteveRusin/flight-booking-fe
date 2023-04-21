@@ -5,9 +5,9 @@
 @use './variables' as *;
 
 @layer theme {
-  body.app-dark {
-    color: mat.get-color-from-palette($theme-primary, 50);
-    background-color: mat.get-color-from-palette($theme-primary, 900);
-    @include app.app-material-components-colors($theme-dark);
+  body {
+    color: mat.get-color-from-palette($theme-primary, 700);
+    background-color: mat.get-color-from-palette($theme-primary, 10);
+    @include app.app-material-components-theme($theme-light);
   }
 }

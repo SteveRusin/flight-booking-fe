@@ -4,14 +4,13 @@
 
 @include mat.core;
 
-$theme-dark: mat.define-dark-theme(
+$theme-light: mat.define-light-theme(
   (
     color: (
       primary: $theme-primary,
       accent: $theme-accent,
       warn: $theme-warn,
       density: -20,
-      is-dark: true,
     ),
   )
 );
