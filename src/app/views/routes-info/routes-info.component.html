@@ -1,12 +1,6 @@
-<ng-container
-  *ngIf="{
-    routes: routes$ | async
-  } as viewData"
->
-  <app-routes-info-table
-    [isLoading]="isLoading"
-    [data]="viewData.routes?.data"
-    [totalCount]="viewData.routes?.count"
-    (pageChange)="onPageChange($event)"
-  ></app-routes-info-table>
-</ng-container>
+<app-routes-info-table
+  [isLoading]="isLoading"
+  [data]="routes.data"
+  [totalCount]="routes.count"
+  (pageChange)="onPageChange($event)"
+></app-routes-info-table>

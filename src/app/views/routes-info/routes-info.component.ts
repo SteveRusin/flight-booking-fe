@@ -1,10 +1,18 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { PageEvent } from '@angular/material/paginator';
-import { EMPTY, catchError, finalize } from 'rxjs';
+import {
+  EMPTY,
+  Subject,
+  Subscription,
+  catchError,
+  finalize,
+  takeUntil,
+} from 'rxjs';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { TranslateService } from '@ngx-translate/core';
 
 import { RoutesInfoService } from './routes-info.service';
+import { RouteDto } from '../../api/api-routes';
 
 @Component({
   selector: 'app-routes-info',
@@ -15,10 +23,15 @@ import { RoutesInfoService } from './routes-info.service';
   },
   providers: [RoutesInfoService],
 })
-export class RoutesInfoComponent {
-  routes$ = this.getPage(0);
+export class RoutesInfoComponent implements OnInit, OnDestroy {
+  routes: RouteDto = {
+    count: 0,
+    data: [],
+  };
 
   isLoading = true;
+
+  private _destroy = new Subject<void>();
 
   constructor(
     private _routesInfoService: RoutesInfoService,
@@ -26,20 +39,41 @@ export class RoutesInfoComponent {
     private _translateService: TranslateService,
   ) {}
 
-  onPageChange(event: PageEvent) {
-    this.routes$ = this.getPage(event.pageIndex);
+  ngOnInit(): void {
+    this.fetchPage(0);
   }
 
-  private getPage(pageIndex: number) {
+  ngOnDestroy(): void {
+    this._destroy.next();
+    this._destroy.complete();
+  }
+
+  onPageChange(event: PageEvent) {
+    this.fetchPage(event.pageIndex);
+  }
+
+  private fetchPage(pageIndex: number) {
     this.isLoading = true;
 
-    return this._routesInfoService.getPage(pageIndex).pipe(
-      finalize(() => (this.isLoading = false)),
-      catchError(() => {
-        this._matSnackBar.open(this._translateService.instant('error.common'));
+    this._routesInfoService
+      .getPage(pageIndex)
+      .pipe(
+        finalize(() => (this.isLoading = false)),
+        catchError(() => {
+          this._matSnackBar.open(
+            this._translateService.instant('error.common'),
+            '',
+            {
+              duration: 5_000,
+            },
+          );
 
-        return EMPTY;
-      }),
-    );
+          return EMPTY;
+        }),
+        takeUntil(this._destroy),
+      )
+      .subscribe({
+        next: (routes) => (this.routes = routes),
+      });
   }
 }
