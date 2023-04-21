@@ -1,4 +1,4 @@
-import { of } from 'rxjs';
+import { defer, of } from 'rxjs';
 import { subscribeSpyTo } from '@hirez_io/observer-spy';
 
 import { ApiRoutesService } from '@api/api-routes';
@@ -35,5 +35,25 @@ describe('RoutesInfoService', () => {
     await subscribeSpyTo(routes2$).onComplete();
 
     expect(apiRoutesSpy.getRoutes).toHaveBeenCalledTimes(1);
+  });
+
+  it('Should make only one request if getPage is called several times in row with same page index', async () => {
+    let amountOfSubscriptions = 0;
+
+    apiRoutesSpy.getRoutes.and.returnValue(
+      defer(() => {
+        amountOfSubscriptions++;
+
+        return of({ count: 0, data: [] });
+      }),
+    );
+
+    const route1$ = routesInfoService.getPage(0);
+    const route2$ = routesInfoService.getPage(0);
+
+    await subscribeSpyTo(route1$).onComplete();
+    await subscribeSpyTo(route2$).onComplete();
+
+    expect(amountOfSubscriptions).toEqual(1);
   });
 });

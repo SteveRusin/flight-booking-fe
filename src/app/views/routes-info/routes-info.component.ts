@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { PageEvent } from '@angular/material/paginator';
-import { EMPTY, Subject, catchError, finalize, takeUntil } from 'rxjs';
+import { EMPTY, Subscription, catchError } from 'rxjs';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { TranslateService } from '@ngx-translate/core';
 
@@ -25,7 +25,7 @@ export class RoutesInfoComponent implements OnInit, OnDestroy {
 
   isLoading = true;
 
-  private _destroy = new Subject<void>();
+  private _sub?: Subscription;
 
   constructor(
     private _routesInfoService: RoutesInfoService,
@@ -38,8 +38,7 @@ export class RoutesInfoComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this._destroy.next();
-    this._destroy.complete();
+    this._sub?.unsubscribe();
   }
 
   onPageChange(event: PageEvent) {
@@ -49,11 +48,14 @@ export class RoutesInfoComponent implements OnInit, OnDestroy {
   private fetchPage(pageIndex: number) {
     this.isLoading = true;
 
-    this._routesInfoService
+    this._sub?.unsubscribe();
+
+    this._sub = this._routesInfoService
       .getPage(pageIndex)
       .pipe(
-        finalize(() => (this.isLoading = false)),
         catchError(() => {
+          this.isLoading = false;
+
           this._matSnackBar.open(
             this._translateService.instant('error.common'),
             '',
@@ -64,10 +66,12 @@ export class RoutesInfoComponent implements OnInit, OnDestroy {
 
           return EMPTY;
         }),
-        takeUntil(this._destroy),
       )
       .subscribe({
-        next: (routes) => (this.routes = routes),
+        next: (routes) => {
+          this.isLoading = false;
+          this.routes = routes;
+        },
       });
   }
 }
