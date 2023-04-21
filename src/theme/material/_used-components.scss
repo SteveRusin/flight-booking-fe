@@ -2,6 +2,7 @@
 
 @mixin app-material-components-theme($theme-or-color-config) {
   @include mat.core-theme($theme-or-color-config);
+
   // @include mat.autocomplete-theme($theme-or-color-config);
   // @include mat.badge-theme($theme-or-color-config);
   // @include mat.button-theme($theme-or-color-config);
@@ -26,6 +27,7 @@
   // @include mat.tooltip-theme($theme-or-color-config);
   @include mat.snack-bar-theme($theme-or-color-config);
   @include mat.progress-spinner-theme($theme-or-color-config);
+
   // @include mat.grid-list-theme($theme-or-color-config);
   // @include mat.paginator-theme($theme-or-color-config);
   // @include mat.sidenav-theme($theme-or-color-config);

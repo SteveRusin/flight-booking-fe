@@ -8,6 +8,4 @@ import { Component } from '@angular/core';
     class: 'with-fluid-height',
   },
 })
-export class AppComponent {
-  title = 'flight-booking-fe';
-}
+export class AppComponent {}

@@ -7,6 +7,9 @@ module.exports = {
     ecmaVersion: 2020,
     sourceType: 'module',
   },
+  env: {
+    browser: true,
+  },
   plugins: ['@typescript-eslint'],
   extends: [
     'plugin:import/errors',

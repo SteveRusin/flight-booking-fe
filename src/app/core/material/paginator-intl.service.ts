@@ -1,7 +1,7 @@
 import { ExistingProvider, Injectable } from '@angular/core';
 import { MatPaginatorIntl } from '@angular/material/paginator';
 import { TranslateService } from '@ngx-translate/core';
-import { combineLatest, startWith } from 'rxjs';
+import { combineLatest } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',

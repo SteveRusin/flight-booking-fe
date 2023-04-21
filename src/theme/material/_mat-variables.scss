@@ -109,7 +109,6 @@ $red-palette: (
     A700: $primary-white,
   ),
 );
-
 $theme-primary: mat.define-palette($colors-primary);
 $theme-accent: mat.define-palette($colors-accent);
 $theme-warn: mat.define-palette($red-palette);
