@@ -1,0 +1,47 @@
+{
+  "extends": ["stylelint-config-standard-scss", "stylelint-config-prettier-scss"],
+  "defaultSeverity": "error",
+  "overrides": [
+    {
+      "files": ["*.scss", "**/*.scss"],
+      "customSyntax": "postcss-scss",
+      "rules": {
+        "max-nesting-depth": [
+          2,
+          {
+            "message": "Deep nesting creates heavy selectors and harness readability. Keep selectors as flat as possible, ideally have only 1 level of nesting. Max allowed is 2",
+            "reportDisables": true
+          }
+        ],
+        "no-empty-source": null,
+        "color-function-notation": "modern",
+        "at-rule-disallowed-list": ["import", "extends"],
+        "font-family-no-missing-generic-family-keyword": [
+          true,
+          {
+            "ignoreFontFamilies": ["Material Icons"]
+          }
+        ]
+      }
+    },
+    {
+      "files": ["**/*.component.scss"],
+      "customSyntax": "postcss-scss",
+      "rules": {
+        "selector-max-type": [
+          0,
+          {
+            "message": "Avoid tag selector in component, they don't bring any semantic meaning. Use more specific tag selector. E.G `button {}` -> `.edit-employee-btn {}`",
+            "reportDisables": true
+          }
+        ],
+        "selector-disallowed-list": [
+          ["/deep/", "::ng-deep"],
+          {
+            "message": "/deep/ and ::ng-deep are deprecated per angular docs. Use either global styles or remove component encapsulation"
+          }
+        ]
+      }
+    }
+  ]
+}
