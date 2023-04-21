@@ -1,18 +1,12 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { PageEvent } from '@angular/material/paginator';
-import {
-  EMPTY,
-  Subject,
-  Subscription,
-  catchError,
-  finalize,
-  takeUntil,
-} from 'rxjs';
+import { EMPTY, Subject, catchError, finalize, takeUntil } from 'rxjs';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { TranslateService } from '@ngx-translate/core';
 
-import { RoutesInfoService } from './routes-info.service';
 import { RouteDto } from '../../api/api-routes';
+
+import { RoutesInfoService } from './routes-info.service';
 
 @Component({
   selector: 'app-routes-info',

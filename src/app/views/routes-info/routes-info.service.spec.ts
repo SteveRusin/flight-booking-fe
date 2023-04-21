@@ -1,7 +1,7 @@
 import { of } from 'rxjs';
 import { subscribeSpyTo } from '@hirez_io/observer-spy';
 
-import { ApiRoutesService, Route } from '@api/api-routes';
+import { ApiRoutesService } from '@api/api-routes';
 
 import { RoutesInfoService } from './routes-info.service';
 
