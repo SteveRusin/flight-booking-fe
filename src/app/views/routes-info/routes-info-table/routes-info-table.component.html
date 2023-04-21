@@ -1,0 +1,57 @@
+<div class="table-wrapper with-fluid-height">
+  <mat-table
+    mat-table
+    [dataSource]="data"
+    matSort
+    matSortActive="created"
+    matSortDisableClear
+    matSortDirection="desc"
+  >
+    <ng-container matColumnDef="id">
+      <mat-header-cell *matHeaderCellDef>#</mat-header-cell>
+      <mat-cell *matCellDef="let row">{{ row.id }}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="airline">
+      <mat-header-cell mat-header-cell *matHeaderCellDef>Airline</mat-header-cell>
+      <mat-cell mat-cell *matCellDef="let row">{{ row.airline }}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="sourceAirport">
+      <mat-header-cell mat-header-cell *matHeaderCellDef>Source Airport</mat-header-cell>
+      <mat-cell mat-cell *matCellDef="let row">{{ row.sourceAirport }}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="destinationAirport">
+      <mat-header-cell mat-header-cell *matHeaderCellDef>Destination Airport</mat-header-cell>
+      <mat-cell mat-cell *matCellDef="let row">{{ row.destinationAirport }}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="codeShare">
+      <mat-header-cell mat-header-cell *matHeaderCellDef>Code Share</mat-header-cell>
+      <mat-cell mat-cell *matCellDef="let row">{{ row.codeShare }}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="stops">
+      <mat-header-cell mat-header-cell *matHeaderCellDef>Stops</mat-header-cell>
+      <mat-cell mat-cell *matCellDef="let row">{{ row.stops }}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="equipment">
+      <mat-header-cell mat-header-cell *matHeaderCellDef>Equipment</mat-header-cell>
+      <mat-cell mat-cell *matCellDef="let row">{{ row.equipment }}</mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+  </mat-table>
+
+  <app-spinner class="loading-overlay-center" *ngIf="isLoading"></app-spinner>
+</div>
+
+<!-- <mat-paginator
+  [length]="resultsLength"
+  [pageSize]="30"
+  aria-label="Select page of GitHub search results"
+></mat-paginator>
+ -->

@@ -45,7 +45,7 @@ module.exports = {
             pattern: 'src/**',
             group: 'internal',
             position: 'after',
-          }
+          },
         ],
         pathGroupsExcludedImportTypes: ['builtin'],
       },
@@ -333,7 +333,10 @@ module.exports = {
   ],
   settings: {
     'import/resolver': {
-      typescript: {}, // this loads <rootdir>/tsconfig.json to eslint
+      typescript: {
+        alwaysTryTypes: true,
+        project: './tsconfig.json',
+      },
     },
   },
 };

@@ -1,0 +1,15 @@
+@use 'variables' as *;
+@use 'sass:map';
+
+:host.loading-overlay-center {
+  display: block;
+  position: absolute;
+  inset: 0;
+  background-color: rgba(map.get($primary-dark, 90), .5);
+}
+
+.mat-spinner {
+  left: 50%;
+  top: 50%;
+  translate: -50% -50%;
+}

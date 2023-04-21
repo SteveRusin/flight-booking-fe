@@ -22,7 +22,9 @@
     "lib": ["ES2022", "dom"],
     "paths": {
       "@api/*": ["src/app/api/*"],
-      "@root/*": ["src/app/root/*"]
+      "@root/*": ["src/app/root/*"],
+      "@shared/*": ["src/app/shared/*"],
+      "@environments": ["src/environments"],
     }
   },
   "angularCompilerOptions": {
