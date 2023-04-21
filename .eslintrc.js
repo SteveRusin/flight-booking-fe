@@ -332,6 +332,19 @@ module.exports = {
       env: {
         jasmine: true,
       },
+      rules: {
+        'no-restricted-globals': [
+          'error',
+          {
+            name: 'fdescribe',
+            message: 'Do not commit fdescribe. Use describe instead.',
+          },
+          {
+            name: 'fit',
+            message: 'Do not commit fit. Use it instead.',
+          },
+        ],
+      },
     },
   ],
   settings: {

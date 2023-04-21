@@ -7,6 +7,7 @@ const LIMIT = 100;
 
 @Injectable()
 export class RoutesInfoService {
+  private _loadedPages = new Set<number>();
   private _routes: RouteDto = {
     count: 0,
     data: [],
@@ -16,9 +17,8 @@ export class RoutesInfoService {
 
   getPage(pageIndex: number): Observable<RouteDto> {
     const newOffset = pageIndex * LIMIT;
-    const dataAlreadyLoaded = this._routes.data[newOffset];
 
-    if (dataAlreadyLoaded) {
+    if (this._loadedPages.has(pageIndex)) {
       return of({
         ...this._routes,
         data: this._routes.data.slice(newOffset, newOffset + LIMIT),
@@ -36,6 +36,7 @@ export class RoutesInfoService {
             ...routes,
             data: this._routes.data.concat(routes.data),
           };
+          this._loadedPages.add(pageIndex);
         }),
       );
   }
