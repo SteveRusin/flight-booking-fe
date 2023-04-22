@@ -15,7 +15,8 @@
     "lint:styles": "stylelint --fix \"**/*.scss\"",
     "find-circular-imports": "madge --circular --extensions=ts --ts-config tsconfig.json ./**/**/*.ts",
     "test:dev": "ng test --watch",
-    "test": "ng test --watch=false"
+    "test": "ng test --watch=false",
+    "s3:push": "aws s3 cp --recursive ./dist s3://flight-booking-fe"
   },
   "private": true,
   "dependencies": {
