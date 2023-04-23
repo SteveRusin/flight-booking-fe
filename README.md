@@ -1,4 +1,25 @@
-# FlightBookingFe
+# Flight Booking Frontend
+
+## Project installation instructions
+
+1. Clone the project
+1. Switch to node v18
+1. Run `npm ci` command to install dependencies
+1. Run `npm run start:dev` to serve application
+
+## Npm scripts
+
+- `npm run start:dev` - starts local env targeting local backend
+- `npm run build` - builds into dist folder with production configuration
+- `npm run test:ci` - run linter and tests. Used by ci environment
+- `npm run build:ci` - build artifacts. Used by ci environment
+- `npm run lint` - lint the project using eslint, stylelint and find circular imports
+- `npm run lint:eslint` - run eslint
+- `npm run lint:styles` - run stylelint
+- `npm run find-circular-imports` - find circular imports in project
+- `npm run test:dev` - run tests in watch mode
+- `npm run test` - run test once using chrome headless,
+- `npm run s3:push` - pushes dist folder to s3
 
 ## Project source code structure:
 
@@ -13,3 +34,90 @@
 - utils - small helper functions. Preferably without business logic.
 - views - entry components for routing. They should manage query params and other router related staff and pass data to child component as input or via service
 - root - application shell ui, includes header, menu, footer etc.
+
+## FE Style Guide
+
+- cross imports between modules are prohibited
+- prefix `app` for components and directives
+- each entity should have separate module
+- implement all domain logic in services. Use more services for data preparation, filtering, grouping, normalization before passing to component.
+- keep component logic for user interaction, browser events or other ui related behavior.
+- smart component are not recommended to depend on other smart component
+- Code formatter: Prettier
+- use Angular cli command to generate code
+- To use enums or constants in templates define enum as component's property `RouteType = RouteType;`
+- Use `ViewModel` suffix for entities that intended for templates only
+- Use `on` prefix for event handlers
+
+## CSS style guide
+- Prefer class over tag/attribute selector
+- Create mixin for reusable styles
+- Don't use `deep/, >>>, and ::ng-deep`. Add global styles or remove component encapsulation instead (see *Global styles vs ViewEncapsulation.None rules* section for details).
+- When removing angular component style encapsulation, make sure the styles are encapsulated by component selector  
+  Example:  
+  ```typescript
+  @Component({
+    selector: 'app-component-selector',
+    encapsulation: ViewEncapsulation.None,
+    styles: [`
+      app-component-selector {
+        // your styles
+      }
+    `]
+  })
+  ```
+- Use "Kebab Case" for class naming.
+  ```scss
+  .some-selector {}
+  ```
+- Use double hyphen for modifier name
+  Example:  
+  ```scss
+  .some-selector--active {}
+  // or
+  .some-selector {
+    &--active {
+      ...
+    }
+  }
+  ```
+- Keep classes as flat as possible, and avoid nesting too deep. Max is 3 level of depth
+  Exceptions are modifiers and pseudo-classes if there are several selectors
+  Example:  
+  ```scss
+  .selector:hover {} // if only one modifier or pseudo class is used - keep it flat
+  .selector { // if several they could be nested
+    &:hover {}
+    &--active {}
+  }
+
+### Global styles vs ViewEncapsulation.None rules
+*If developer has doubts about which approach to use the discussion could be raised*
+#### Use global styles for/when (make sure class name is unique):
+- App wide styles (material, other libraries etc)
+- Definition of theme/state classes  
+  Example:  
+  ```scss
+    .checkbox--red {}
+    .app-grid--grey {}
+  ```
+- If usage of mixin violates DRY principle. Although mixin is still preferable because it's tree shakable.
+
+### Use ViewEncapsulation.None for:
+- To override styles locally. Styles should be specific only for that component in this case. E.g after deletion of component source code styles could be removed as well
+- Dialogs in general
+- When it makes no sense for styles to be globally available. Consider unused css (dead styles)
+
+## Api layer services
+
+Api access layer with shared services for backend communication. Those services can be used all over the application and many time during application execution.
+
+- Do not cache any streams or data in service
+- All services should be `providedIn: root`
+- Do not import any dependencies from other modules(except core)
+- All models for response and request should be defined alongside service in same folder
+- All communication with external service should be implemented in Api layer
+- Add `Api` suffix to api layer models
+- Add `Dto` sufix to models representing request payload
+- If `Api` and `Dto` models are identical Dto model might be omitted
+

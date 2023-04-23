@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 
 import { environment } from '@environments';
 
-import { RoutesQuery, RouteDto } from './api-routes.models';
+import { ApiRoutesQuery, RouteDto } from './api-routes.models';
 
 @Injectable({
   providedIn: 'root',
@@ -12,7 +12,7 @@ import { RoutesQuery, RouteDto } from './api-routes.models';
 export class ApiRoutesService {
   constructor(private _httpClient: HttpClient) {}
 
-  getRoutes(query: RoutesQuery): Observable<RouteDto> {
+  getRoutes(query: ApiRoutesQuery): Observable<RouteDto> {
     const params = new HttpParams()
       .set('limit', query.limit)
       .set('offset', query.offset);

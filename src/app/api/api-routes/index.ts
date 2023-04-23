@@ -1,2 +1,2 @@
-export { Route, RouteDto, RoutesQuery } from './api-routes.models';
+export { ApiRoute, RouteDto, ApiRoutesQuery } from './api-routes.models';
 export { ApiRoutesService } from './api-routes.service';

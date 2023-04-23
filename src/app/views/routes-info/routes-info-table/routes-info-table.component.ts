@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { PageEvent } from '@angular/material/paginator';
 
-import { Route } from '@api/api-routes';
+import { ApiRoute } from '@api/api-routes';
 
 @Component({
   selector: 'app-routes-info-table',
@@ -13,11 +13,11 @@ import { Route } from '@api/api-routes';
 })
 export class RoutesInfoTableComponent {
   @Input()
-  set data(val: Route[] | undefined) {
+  set data(val: ApiRoute[] | undefined) {
     this._data = val;
   }
 
-  get data(): Route[] {
+  get data(): ApiRoute[] {
     return this._data || [];
   }
 
@@ -39,7 +39,7 @@ export class RoutesInfoTableComponent {
   @Output()
   pageChange = new EventEmitter<PageEvent>();
 
-  displayedColumns: (keyof Route)[] = [
+  displayedColumns: (keyof ApiRoute)[] = [
     'id',
     'sourceAirport',
     'destinationAirport',
@@ -49,7 +49,7 @@ export class RoutesInfoTableComponent {
     'codeShare',
   ];
 
-  private _data?: Route[];
+  private _data?: ApiRoute[];
   private _totalCount?: number;
 
   onPageChange(event: PageEvent) {

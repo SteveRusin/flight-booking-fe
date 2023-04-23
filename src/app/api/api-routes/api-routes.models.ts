@@ -1,9 +1,9 @@
-export interface RoutesQuery {
+export interface ApiRoutesQuery {
   limit: number;
   offset: number;
 }
 
-export interface Route {
+export interface ApiRoute {
   id: number;
   airline: string;
   sourceAirport: string;
@@ -15,5 +15,5 @@ export interface Route {
 
 export interface RouteDto {
   count: number;
-  data: Route[];
+  data: ApiRoute[];
 }
