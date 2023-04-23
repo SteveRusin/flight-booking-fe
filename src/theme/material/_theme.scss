@@ -1,7 +1,5 @@
 @use '@angular/material' as mat;
-
 @use './variables' as *;
-
 @include mat.core;
 
 $theme-light: mat.define-light-theme(

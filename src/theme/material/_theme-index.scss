@@ -1,5 +1,4 @@
 @use '@angular/material' as mat;
-
 @use './theme' as *;
 @use './used-components' as app;
 @use './variables' as *;
@@ -8,6 +7,7 @@
   body {
     color: mat.get-color-from-palette($theme-primary, 700);
     background-color: mat.get-color-from-palette($theme-primary, 10);
+
     @include app.app-material-components-theme($theme-light);
   }
 }
