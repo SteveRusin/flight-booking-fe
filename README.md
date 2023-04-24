@@ -1,5 +1,9 @@
 # Flight Booking Frontend
 
+## Prerequisite
+
+- Node >= v18
+
 ## Project installation instructions
 
 1. Clone the project
@@ -121,3 +125,6 @@ Api access layer with shared services for backend communication. Those services 
 - Add `Dto` sufix to models representing request payload
 - If `Api` and `Dto` models are identical Dto model might be omitted
 
+## CI/CD
+
+- CD/CD is done using [github action](./.github/workflows/push_main.yml)
